@@ -32,14 +32,15 @@ public class Converter {
                 case 2:
                 	subMenu(menuSelection);
                     System.out.print("    >> ");
+
                     submenu = scan.nextInt();
-                    disCalc(submenu);
+                    
                     break;
                 case 3:
                 	subMenu(menuSelection);
                     System.out.print("    >> ");
                     submenu = scan.nextInt();
-                    weighCalc(submenu);
+           
                     break;
                 case 4:
                     System.exit(0);
@@ -75,7 +76,8 @@ public class Converter {
            }else {
         	   System.out.println(weigh);
         	   
-           }	
+           }
+    	
     }
     
     public static void tempCalc(int choice) {

@@ -1,0 +1,4 @@
+Console.highWaterMark=1008000
+Console.lowWaterMark=1000000
+eclipse.preferences.version=1
+preferredTargets=org.eclipse.lsp4e.debug.toggleBreakpointTarget\:org.eclipse.lsp4e.debug.toggleBreakpointTarget|

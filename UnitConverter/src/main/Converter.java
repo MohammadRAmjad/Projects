@@ -3,7 +3,7 @@ package main;
 import java.util.Scanner;
 
 public class Converter {
-
+	static Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args){
         int submenu;
@@ -15,7 +15,6 @@ public class Converter {
         while (true) {
             System.out.println(menu);
             System.out.print(">> ");
-            Scanner scan = new Scanner(System.in);
             int menuSelection = scan.nextInt();
 
             switch(menuSelection) {
@@ -79,7 +78,6 @@ public class Converter {
     }
     
     public static void tempCalc(int choice) {
-    	Scanner scan = new Scanner(System.in);
     	double value;
     	double result;
     	switch (choice) {
@@ -95,12 +93,11 @@ public class Converter {
             result = celsiusToFahrenheit(value);
             System.out.println("    Your temperature in Celsius is: " + result + "\n");
     	}
-    	scan.close();
     }
     
     
     public static void disCalc(int choice) {
-    	Scanner scan = new Scanner(System.in);
+    	
     	double value;
     	double result;
     	switch (choice) {
@@ -141,7 +138,7 @@ public class Converter {
             result = MeterToyard(value);
             System.out.println("    Your distance in Yard is: " + result + "\n");
     	}
-    	scan.close();
+    	
     }
     
     public static void weighCalc(int choice) {
@@ -164,7 +161,6 @@ public class Converter {
             result = lbToKg(value);
             System.out.println("    Your weight in Kg is: " + result + "\n");
     	}
-    	scan.close();
     }
 
     public static double fahrenheitToCelsius(double value) {

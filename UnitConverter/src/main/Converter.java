@@ -7,13 +7,11 @@ public class Converter {
 
     public static void main(String[] args){
         int submenu;
-        double value;
         String menu = "Please select an option:"
                 + "\n" + "1. Temperature Conversion"
                 + "\n" + "2. Distance Conversion"
                 + "\n" + "3. Weight Conversion"
                 + "\n" + "4. Quit";
-        double result;
         while (true) {
             System.out.println(menu);
             System.out.print(">> ");
@@ -42,6 +40,7 @@ public class Converter {
                     weighCalc(submenu);
                     break;
                 case 4:
+                	scan.close();
                     System.exit(0);
                     break;
                 default:
@@ -49,6 +48,7 @@ public class Converter {
             }
         }
     }
+    
     
     public static void subMenu(int choice) {
     	   
@@ -94,10 +94,8 @@ public class Converter {
             value = scan.nextDouble();
             result = celsiusToFahrenheit(value);
             System.out.println("    Your temperature in Celsius is: " + result + "\n");
-            break;
-        default:
-            System.out.println("    Please input a value between 1 or 2" + "\n");
     	}
+    	scan.close();
     }
     
     
@@ -142,11 +140,8 @@ public class Converter {
             value = scan.nextDouble();
             result = MeterToyard(value);
             System.out.println("    Your distance in Yard is: " + result + "\n");
-            break;
-        default:
-            System.out.println("    Please input a value between 1 to 6" + "\n");
-
     	}
+    	scan.close();
     }
     
     public static void weighCalc(int choice) {
@@ -168,10 +163,8 @@ public class Converter {
             value = scan.nextDouble();
             result = lbToKg(value);
             System.out.println("    Your weight in Kg is: " + result + "\n");
-            break;
-        default:
-            System.out.println("    Please input a value between 1 or 2" + "\n");
-    }
+    	}
+    	scan.close();
     }
 
     public static double fahrenheitToCelsius(double value) {

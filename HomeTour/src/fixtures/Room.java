@@ -2,18 +2,18 @@ package fixtures;
 import java.util.*;
 public class Room extends Fixture {
 	
-	//private Room [] exits;
-	private Hashtable<Room, String > directionSet;
+	private Room [] exits;
+	private Hashtable<Integer, String > directionSet;
 	
 	public Room(String name, String shortDescription, String longDescription) {
 		super(name, shortDescription, longDescription);
 		//this.exits = new Room [2];
-		directionSet = new Hashtable <Room, String>();
+		directionSet = new Hashtable <Integer, String>();
 		
 	}
 	
 	
-/*	public void setExits(Room ex) {
+	public void setExits(Room ex) {
 		if(this.exits[0] == null) {
 			exits[0] = ex;
 		}else {
@@ -24,11 +24,13 @@ public class Room extends Fixture {
 	public Room[] getExits() {
 		return exits;
 		
-	} */
+	} 
 		
-	public Room setExit(String direction) {
+	public void setExits(int index, String direction) {
+		directionSet.put(index, direction);
 		
 	}
+	
 
 
 }

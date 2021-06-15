@@ -1,30 +1,28 @@
 package game;
 import java.util.*;
 import fixtures.Room;
+import fixtures.Room;
 
 public class Player {
-	Stack<Room> visitedRoomList;
+	
 	
 	private String name;
-	
-	public Player() {
-		visitedRoomList = new Stack<Room>();
-	}
-	
+	private Room currentRoom;
 	public void setName(String name) {
 		this.name = name;
+		
 	}
 	
 	public String getName() {
 		return this.name;
 	}
 	
-	public void addRoomToList(Room current) {
-		visitedRoomList.add(current);
+	public void SetCurrentRoom(Room current) {
+		currentRoom = current;
 	}
 	
-	public String getCurrentRoom() {
-		Room curr = visitedRoomList.peek();
-		return curr.getName();	
+	public Room getCurrentRoom() {
+		
+		return currentRoom;
 	}
 }

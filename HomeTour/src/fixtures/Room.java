@@ -7,24 +7,10 @@ public class Room extends Fixture {
 	
 	public Room(String name, String shortDescription, String longDescription) {
 		super(name, shortDescription, longDescription);
-		//this.exits = new Room [2];
+		
 		directionRoom = new Hashtable <String , Room>();
 		
-	}
-	
-	
-/*	public void setExits(Room ex) {
-		if(this.exits[0] == null) {
-			exits[0] = ex;
-		}else {
-			exits[1] = ex;
-		}
-	} 
-	
-	public Room[] getExits() {
-		return exits;
-		
-	} */
+	}	
 		
 	public void setExits(String direction, Room a) {
 		directionRoom.put(direction, a);
@@ -44,6 +30,8 @@ public class Room extends Fixture {
                     + "\t\t Room : "  + directionRoom.get(key).getName());
 		}
 	}
+	
+	
 
 
 }

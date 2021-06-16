@@ -2,33 +2,44 @@ package fixtures;
 import java.util.*;
 public class Room extends Fixture {
 	
-	//private Room [] exits;
-	private Hashtable<String, Room > directionRoom;
+	private ArrayList<Room> exits;
+	
+	private Room innerRoom;
 	
 	public Room(String name, String shortDescription, String longDescription) {
 		super(name, shortDescription, longDescription);
+		exits = new ArrayList<Room>();
 		
-		directionRoom = new Hashtable <String , Room>();
+	}	
+	
+	public Room(String name, String shortDescription, String longDescription, Room inner) {
+		this(name, shortDescription, longDescription);
+		
+	
+		this.innerRoom = inner;
 		
 	}	
 		
-	public void setExits(String direction, Room a) {
-		directionRoom.put(direction, a);
+	public void setExits( Room a) {
+		exits.add(a);
 		
 	}
 	
-	public Room getExit(String direction) {
-		return directionRoom.get(direction);
+	public Room getExit(int index) {
+		
+		return exits.get( index - 1);
+		
 	}
 	
 	
 	public void displayExits() {
-		Set<String> directionSet = directionRoom.keySet();
-		for(String key: directionSet) {
+		
+		for(Room r : exits) {
 
-            System.out.println("Direction : "  + key 
-                    + "\t\t Room : "  + directionRoom.get(key).getName());
+            System.out.println("Option: "  + (exits.indexOf(r) +1) 
+                    + "\t"  + r.getName());
 		}
+		System.out.println();
 	}
 	
 	

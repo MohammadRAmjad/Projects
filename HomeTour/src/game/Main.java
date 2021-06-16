@@ -1,5 +1,6 @@
 package game;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -10,12 +11,19 @@ public class Main {
 		rm = new RoomManager();
 		Player p = new Player();
 		rm.init();
-		System.out.println("Please Enter ypur name");
-		String name = input.nextLine();
-		p.setName(name);
-		System.out.println("Welcom " + p.getName() + "Lets get started");
+		//System.out.println("Please Enter ypur name");
+		//String name = input.nextLine();
+		//p.setName(name);
+		//System.out.println("Welcom " + p.getName() + "Lets get started");
+		
+		System.out.println("To sellect your next room type in the roon name "
+				+ "\n" + "To leave the house type in quit");
+		
 		p.SetCurrentRoom(rm.getStartingRoom());
+		System.out.println("Lets get started");
+		
 		printRoom(p);
+		rm.visitedRooms(p.getCurrentRoom());
 		
 		boolean leave = false;
 		
@@ -24,56 +32,45 @@ public class Main {
 			String[] comm = collectInput();
 			parse(comm,  p);
 			printRoom(p);	
-		}
-		
-		
-		
+		}	
 	}
 	
 	private static void printRoom(Player player) {
 		System.out.println("Your are in:");
+		System.out.println();
 		rm.roomDescription(player.getCurrentRoom());
 		
 	}
 
 	private static String[] collectInput() {
-		System.out.println("Please select the direction that you want to go!");
+		System.out.println("Please select the room that you want to go to!");
 		
 		System.out.print(">> ");
 		String s = input.nextLine();
 		String[] result = s.split(" ");
-		
+		Arrays.toString(result);
 		return result;
 	}
 		
 	private static void parse(String[] command, Player player) {
-		String cmd = "";
-		for(int i = 0; i < command.length; i++) {
-			if (command[i].equalsIgnoreCase("north") || command[i].equalsIgnoreCase("south") 
-					|| command[i].equalsIgnoreCase("east") || command[i].equalsIgnoreCase("west")){
-						cmd += command[i];
-						player.SetCurrentRoom(player.getCurrentRoom().getExit(cmd));
-					}
-		/*	switch(cmd) {
-				case "north":
-						player.SetCurrentRoom(player.getCurrentRoom().getExit(cmd));
-					break;
-				case "south":
-					break;
-				case "east":
-					break;
-				case "west":
-					break;
-				case "quit":
-					System.out.println("Goodby " + player.getName());
-				 
-				
-			}*/
+		int option = 0;
 		
+		for(int i = 0; i < command.length; i++) {
+			try {
+				option = Integer.parseInt(command[i]);
+				break;
+				
+			} catch(NumberFormatException e) {
+				option = 0;
+				continue;
+			}			
+		}
+		
+		if(option > 0) {
+			player.SetCurrentRoom(player.getCurrentRoom().getExit(option));
+		}
+	
 	}
 	
 	
-
-	}
-
 }

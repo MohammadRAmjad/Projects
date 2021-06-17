@@ -1,6 +1,5 @@
 package game;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -16,19 +15,21 @@ public class Main {
 		//p.setName(name);
 		//System.out.println("Welcom " + p.getName() + "Lets get started");
 		
-		System.out.println("To sellect your next room type in the roon name "
-				+ "\n" + "To leave the house type in quit");
+		System.out.println("To sellect your next room type in the option");
+				
 		
 		p.SetCurrentRoom(rm.getStartingRoom());
 		System.out.println("Lets get started");
+		System.out.println();
 		
 		printRoom(p);
 		rm.visitedRooms(p.getCurrentRoom());
 		
-		boolean leave = false;
+	
 		
 		
-		while(leave == false) {
+		while(true) {
+			System.out.println("Please select the room that you want to go to!");
 			String[] comm = collectInput();
 			parse(comm,  p);
 			printRoom(p);	
@@ -43,18 +44,42 @@ public class Main {
 	}
 
 	private static String[] collectInput() {
-		System.out.println("Please select the room that you want to go to!");
 		
 		System.out.print(">> ");
 		String s = input.nextLine();
 		String[] result = s.split(" ");
-		Arrays.toString(result);
 		return result;
 	}
 		
 	private static void parse(String[] command, Player player) {
-		int option = 0;
+		 int choice = parseOptions(command);
 		
+		
+		
+		switch(choice) {
+			case 0:
+				System.out.println("Goodbye");
+				System.exit(0);
+				break;
+			case 1, 2, 3, 4, 5, 6:
+				player.SetCurrentRoom(player.getCurrentRoom().getExit(choice));
+				rm.visitedRooms(player.getCurrentRoom());
+				break;
+			case 7:
+				if(player.getCurrentRoom().isEmpty())
+					System.out.println("There is nothing here");
+				else {
+					player.getCurrentRoom().displayItems();
+					if(player.getCurrentRoom().notInItsPlace()) {
+						System.out.println("There is nothing here");
+					}
+				}
+				break;
+		}
+	}
+	
+	private static int parseOptions(String[] command) {
+		int option = 0;
 		for(int i = 0; i < command.length; i++) {
 			try {
 				option = Integer.parseInt(command[i]);
@@ -62,14 +87,11 @@ public class Main {
 				
 			} catch(NumberFormatException e) {
 				option = 0;
+				System.out.println("you did not select any option");
 				continue;
 			}			
 		}
-		
-		if(option > 0) {
-			player.SetCurrentRoom(player.getCurrentRoom().getExit(option));
-		}
-	
+		return option;
 	}
 	
 	

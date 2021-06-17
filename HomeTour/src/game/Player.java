@@ -1,21 +1,21 @@
 package game;
 import java.util.*;
+
+import fixtures.Item;
 import fixtures.Room;
-import fixtures.Room;
+
 
 public class Player {
 	
-	
-	private String name;
 	private Room currentRoom;
-	public void setName(String name) {
-		this.name = name;
-		
+	//private ArrayList<Item> toCarry;
+	private Item item;
+	
+	public Player() {
+		//toCarry = new ArrayList<Item>();
 	}
 	
-	public String getName() {
-		return this.name;
-	}
+	
 	
 	public void SetCurrentRoom(Room current) {
 		currentRoom = current;
@@ -25,4 +25,14 @@ public class Player {
 		
 		return currentRoom;
 	}
+	
+	public void pickUp(Item a) {
+		item = a;
+	}
+	
+	public void putItem() {
+		currentRoom.addItem(item);
+		
+	}
+	
 }

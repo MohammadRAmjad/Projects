@@ -2,25 +2,19 @@ package fixtures;
 
 public abstract class Fixture {
 	private String name;
-	private String shortDescription;
-	private String longDescription;
+	private String description;
+
 	
-	public Fixture(String name, String shortDescription) {
+	public Fixture(String name, String description) {
 		this .name = name;
-		this.shortDescription = shortDescription;
-	}
-	
-	public Fixture(String name, String shortDescription, String longDescription) {
-		this(name, shortDescription);
-		this.longDescription = longDescription;
+		this.description = description;
 	}
 	
 	
-	public String getShortDescription() {
-		return shortDescription;
-	}
-	public String getLongDescription() {
-		return longDescription;
+	
+	
+	public String getDescription() {
+		return this.description;
 	}
 	
 	public String getName() {

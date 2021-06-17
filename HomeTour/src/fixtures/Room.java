@@ -3,19 +3,20 @@ import java.util.*;
 public class Room extends Fixture {
 	
 	private ArrayList<Room> exits;
+	private ArrayList<Item> items;
 	
 	private Room innerRoom;
 	
-	public Room(String name, String shortDescription, String longDescription) {
-		super(name, shortDescription, longDescription);
+	public Room(String name, String description) {
+		super(name, description);
 		exits = new ArrayList<Room>();
+		items = new ArrayList<Item>();
+		this.innerRoom = null;
 		
 	}	
 	
-	public Room(String name, String shortDescription, String longDescription, Room inner) {
-		this(name, shortDescription, longDescription);
-		
-	
+	public Room(String name, String description, Room inner) {
+		this(name, description);
 		this.innerRoom = inner;
 		
 	}	
@@ -42,7 +43,51 @@ public class Room extends Fixture {
 		System.out.println();
 	}
 	
+	public void addItem(Item stuff) {
+		items.add(stuff);
+	}
+	public void removeItem(Item stuff) {
+		
+		for(Item i : items) {
+			if(i == stuff)
+				items.remove(stuff);
+		}
+	}
 	
+	public void displayItems() {
+		for(Item r : items) {
+
+            System.out.println("Item: "  + (items.indexOf(r) +1) 
+                    + "\t"  + r.getName());
+		}
+		System.out.println();
+	}
+	
+	public boolean isEmpty() {
+		return items.isEmpty();
+			
+	}
+	
+	public boolean notInItsPlace() {
+		boolean r = false;
+		for(Item item : items) {
+			if(item.moveable()) {
+				r = true;	
+			}
+		}
+		return r;
+		
+	}
+	
+	public Item misplacedItem() {
+		for(Item item : items) {
+			if(item.moveable()) {
+				return item;	
+			}
+		}
+		return null;
+		
+	}
 
 
 }

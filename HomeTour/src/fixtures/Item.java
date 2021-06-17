@@ -1,25 +1,37 @@
 package fixtures;
 
-public abstract class Item {
+public class Item extends Fixture {
 	private String name;
-	private String location;
-	public Item(String name) {
-		this.name = name;
-	}
-	public Item(String name, String location){
-		this(name);
-		this.location = location;
+	private Room currLocation;
+	private Room actualLocation;
+
+
+	public Item(String name, String description, Room currLoction, Room actualLocation){
+		super(name, description);
+		this.currLocation = currLoction;
+		this.actualLocation = actualLocation;
 	}
 	
 	public String getName() {
 		return name;
 	}
 	
-	public String getLocation() {
-		return location;
+	public Room getLocation() {
+		return currLocation;
 	}
-	public void setLocation(String location) {
-		this.location = location;
+	public void setLocation(Room location) {
+		this.currLocation = location;
 	}
+	
+	public void displayCurrentLocation() {
+		System.out.println(name + " is inside the: " + currLocation.getName());
+	}
+	
+	public boolean moveable() {
+		if (currLocation != actualLocation)
+			return true;
+		return false;
+	}
+	
 	
 }

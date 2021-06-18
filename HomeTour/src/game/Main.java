@@ -10,11 +10,7 @@ public class Main {
 		rm = new RoomManager();
 		Player p = new Player();
 		rm.init();
-		//System.out.println("Please Enter ypur name");
-		//String name = input.nextLine();
-		//p.setName(name);
-		//System.out.println("Welcom " + p.getName() + "Lets get started");
-		
+
 		System.out.println("To sellect your next room type in the option");
 				
 		
@@ -29,7 +25,10 @@ public class Main {
 		
 		
 		while(true) {
-			System.out.println("Please select the room that you want to go to!");
+			if (rm.isThereAnItem())
+				System.out.println("Please select the room that you want to go to!");
+			else 
+				System.out.println("Type in 'YES' to put it or select another room to go to!");
 			String[] comm = collectInput();
 			parse(comm,  p);
 			printRoom(p);	
@@ -37,9 +36,9 @@ public class Main {
 	}
 	
 	private static void printRoom(Player player) {
-		System.out.println("Your are in:");
+		System.out.println("Your are in: " + player.getCurrentRoom().getName());
 		System.out.println();
-		rm.roomDescription(player.getCurrentRoom());
+		rm.displayExits(player.getCurrentRoom());
 		
 	}
 
@@ -53,29 +52,37 @@ public class Main {
 		
 	private static void parse(String[] command, Player player) {
 		 int choice = parseOptions(command);
+		 	
+		 	
+		 	
+		 	if (choice > 0) {
 		
-		
-		
-		switch(choice) {
-			case 0:
-				System.out.println("Goodbye");
-				System.exit(0);
-				break;
-			case 1, 2, 3, 4, 5, 6:
-				player.SetCurrentRoom(player.getCurrentRoom().getExit(choice));
-				rm.visitedRooms(player.getCurrentRoom());
-				break;
-			case 7:
-				if(player.getCurrentRoom().isEmpty())
-					System.out.println("There is nothing here");
-				else {
-					player.getCurrentRoom().displayItems();
-					if(player.getCurrentRoom().notInItsPlace()) {
-						System.out.println("There is nothing here");
-					}
+		 		if (choice <= player.getCurrentRoom().getExits().size()) {
+		 			player.SetCurrentRoom(player.getCurrentRoom().getExit(choice));
+					rm.visitedRooms(player.getCurrentRoom());
+					if(!player.isEmpty()) {		
+				 			if(player.getCurrentRoom().equals(player.getcarryingItem().getActualLocation())) {	
+						 		System.out.println("Here is the place to put " + player.getcarryingItem().getName());
+						 		System.out.println("Here is a prize for your hard work!!");
+						 		player.getCurrentRoom().setExits(rm.getManCave());
+				 			}	
+				 	}	
+					
+		 		}else if(choice == player.getCurrentRoom().getExits().size() + 1) {
+		 			System.out.println("Goodbye");
+					System.exit(0);
 				}
-				break;
-		}
+		 	}
+		 	else {
+		 		if(command[0].equalsIgnoreCase("yes")) {
+		 			player.pickUp(rm.getMisplacedObject());
+		 			rm.removeItem(player.getcarryingItem(), player.getCurrentRoom());
+		 			rm.setMisplacedItem(null);
+		 			rm.getMisplacedObject();
+		 			}
+		 		}	
+		 		
+		
 	}
 	
 	private static int parseOptions(String[] command) {
@@ -87,12 +94,10 @@ public class Main {
 				
 			} catch(NumberFormatException e) {
 				option = 0;
-				System.out.println("you did not select any option");
 				continue;
 			}			
 		}
 		return option;
 	}
-	
 	
 }

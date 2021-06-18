@@ -8,11 +8,12 @@ import fixtures.Room;
 public class Player {
 	
 	private Room currentRoom;
-	//private ArrayList<Item> toCarry;
+	
 	private Item item;
 	
 	public Player() {
-		//toCarry = new ArrayList<Item>();
+		currentRoom = null;
+		item = null;
 	}
 	
 	
@@ -31,8 +32,18 @@ public class Player {
 	}
 	
 	public void putItem() {
-		currentRoom.addItem(item);
-		
+		item = null;	
 	}
+	
+	public Item getcarryingItem() {
+		return item;
+	}
+	
+public boolean isEmpty () {
+		if(item == null)
+			return true;
+		return false;
+	}
+	
 	
 }

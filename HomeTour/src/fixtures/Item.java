@@ -1,7 +1,7 @@
 package fixtures;
 
 public class Item extends Fixture {
-	private String name;
+	//private String name;
 	private Room currLocation;
 	private Room actualLocation;
 
@@ -12,26 +12,31 @@ public class Item extends Fixture {
 		this.actualLocation = actualLocation;
 	}
 	
-	public String getName() {
-		return name;
-	}
 	
-	public Room getLocation() {
+	
+	public Room getCurrLocation() {
 		return currLocation;
 	}
+
+	public void setCurrLocation(Room currLocation) {
+		this.currLocation = currLocation;
+	}
+
+	public Room getActualLocation() {
+		return actualLocation;
+	}
+
+	public void setActualLocation(Room actualLocation) {
+		this.actualLocation = actualLocation;
+	}
+
+
 	public void setLocation(Room location) {
 		this.currLocation = location;
 	}
 	
 	public void displayCurrentLocation() {
-		System.out.println(name + " is inside the: " + currLocation.getName());
+		System.out.println(super.getName() + " is inside the: " + currLocation.getName());
 	}
-	
-	public boolean moveable() {
-		if (currLocation != actualLocation)
-			return true;
-		return false;
-	}
-	
 	
 }

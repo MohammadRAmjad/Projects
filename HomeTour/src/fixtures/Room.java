@@ -32,62 +32,54 @@ public class Room extends Fixture {
 		
 	}
 	
+	public ArrayList<Room> getExits(){
+		return exits;
+	}
 	
-	public void displayExits() {
-		
-		for(Room r : exits) {
+	public ArrayList<Item> getItems(){
+		return items;
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((exits == null) ? 0 : exits.hashCode());
+		result = prime * result + ((innerRoom == null) ? 0 : innerRoom.hashCode());
+		result = prime * result + ((items == null) ? 0 : items.hashCode());
+		return result;
+	}
 
-            System.out.println("Option: "  + (exits.indexOf(r) +1) 
-                    + "\t"  + r.getName());
-		}
-		System.out.println();
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Room other = (Room) obj;
+		if (exits == null) {
+			if (other.exits != null)
+				return false;
+		} else if (!exits.equals(other.exits))
+			return false;
+		if (innerRoom == null) {
+			if (other.innerRoom != null)
+				return false;
+		} else if (!innerRoom.equals(other.innerRoom))
+			return false;
+		if (items == null) {
+			if (other.items != null)
+				return false;
+		} else if (!items.equals(other.items))
+			return false;
+		return true;
 	}
-	
-	public void addItem(Item stuff) {
-		items.add(stuff);
-	}
-	public void removeItem(Item stuff) {
-		
-		for(Item i : items) {
-			if(i == stuff)
-				items.remove(stuff);
-		}
-	}
-	
-	public void displayItems() {
-		for(Item r : items) {
 
-            System.out.println("Item: "  + (items.indexOf(r) +1) 
-                    + "\t"  + r.getName());
-		}
-		System.out.println();
-	}
-	
 	public boolean isEmpty() {
 		return items.isEmpty();
 			
 	}
-	
-	public boolean notInItsPlace() {
-		boolean r = false;
-		for(Item item : items) {
-			if(item.moveable()) {
-				r = true;	
-			}
-		}
-		return r;
-		
-	}
-	
-	public Item misplacedItem() {
-		for(Item item : items) {
-			if(item.moveable()) {
-				return item;	
-			}
-		}
-		return null;
-		
-	}
-
 
 }

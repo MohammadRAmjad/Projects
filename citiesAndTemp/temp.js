@@ -8,20 +8,23 @@ var hot = [];
 
 
 
-for (i = 0; i < cities.length; i++){
+for (i = 0; i <= cities.length - 1; i++){
   var temp = cities[i].split('|')
   
   var result = (temp[1] - 32) * (9/5)
   if(result < 20)
-    cold.push(cities[i])
+    cold.push(cities[i]+ "|celsius = " + result)
   else if(result > 20 && result < 30)
-    cold.push(cities[i])
-  else
-    cold.push(cities[i])
+    moderate.push(cities[i]+ "|celsius = " + result)
+  else if(result > 30)
+    hot.push(cities[i]+ "|celsius = " + result)
 }
-console.log("Cold Cities: " + cold);
-console.log("Moderate Cities: " + moderate);
-console.log("Hot Cities: " + hot);
+console.log("Cold Cities: ")
+console.log(cold)
+console.log("Moderate Cities: " )
+console.log(moderate)
+console.log("Hot Cities: " );
+console.log(hot)
 
 
 

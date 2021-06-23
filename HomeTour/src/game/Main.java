@@ -28,7 +28,7 @@ public class Main {
 			if (rm.isThereAnItem())
 				System.out.println("Please select the room that you want to go to!");
 			else 
-				System.out.println("Type in 'YES' to put it or select another room to go to!");
+				System.out.println("Type in 'YES' to put it back or select another room to go to!");
 			String[] comm = collectInput();
 			parse(comm,  p);
 			printRoom(p);	
@@ -64,6 +64,7 @@ public class Main {
 				 			if(player.getCurrentRoom().equals(player.getcarryingItem().getActualLocation())) {	
 						 		System.out.println("Here is the place to put " + player.getcarryingItem().getName());
 						 		System.out.println("Here is a prize for your hard work!!");
+						 		player.putItem();
 						 		player.getCurrentRoom().setExits(rm.getManCave());
 				 			}	
 				 	}	

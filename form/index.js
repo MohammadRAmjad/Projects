@@ -1,16 +1,17 @@
 const express = require("express");
 const app = express();
 const pool = require("./db")
-
+const path = require('path')
+//const index = require("./index.html")
 app.use(express.json()) // request body
 
-app.listen(3000, () =>{
-    console.log("server is listening at port 3000");
-});
+
+app.use(express.static(path.join(__dirname)))
 
 
-
-
+app.get('/',(req,res)=>{
+    res.sendFile(path.join(__dirname, 'index.html'));
+})
 //create form 
 app.post("/forms", async(req,res)=>{
     try{
@@ -24,4 +25,8 @@ app.post("/forms", async(req,res)=>{
     }catch(err){
         console.error(err.message)
     }
+});
+
+app.listen(3000, () =>{
+    console.log("server is listening at port 3000");
 });

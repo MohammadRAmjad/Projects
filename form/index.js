@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const pool = require("./db")
 const path = require('path')
-//const index = require("./index.html")
+
 app.use(express.json()) // request body
 
 

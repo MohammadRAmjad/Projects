@@ -1,0 +1,11 @@
+
+<div class=""> 
+    <input type="text" name="title" id="title" class="form-control" placeholder="title">
+    <button id="buton" ((click)="isButtonClicked = true") >Hide Message Box</button>
+   
+</div>
+    <br>
+<div [ngClass]="{'hidden': isButtonClicked}" >
+  
+    <textarea id="ta" rows="4" cols="60" placeholder="Enter your message"></textarea> 
+</div>

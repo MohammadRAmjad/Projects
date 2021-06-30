@@ -1,11 +1,14 @@
 
-<div class=""> 
+<div>
     <input type="text" name="title" id="title" class="form-control" placeholder="title">
-    <button id="buton" ((click)="isButtonClicked = true") >Hide Message Box</button>
+    <button id="buton" >Hide Message Box</button>
+</div>
    
-</div>
-    <br>
-<div [ngClass]="{'hidden': isButtonClicked}" >
-  
+
+
+<div>
     <textarea id="ta" rows="4" cols="60" placeholder="Enter your message"></textarea> 
-</div>
+</div> 
+
+<!-- [ngClass]="{'hidden': isButtonClicked}"  -->
+<!-- ((click)="isButtonClicked = true") -->

@@ -1,4 +1,4 @@
-import { forEachTrailingCommentRange, isTaggedTemplateExpression, isTemplateExpression } from "typescript";
+//import { forEachTrailingCommentRange, isTaggedTemplateExpression, isTemplateExpression } from "typescript";
 import { Subject } from "rxjs";
 import { CartItem } from "../shared/cartItem.model";
 import { Product } from "../shared/product.model";
@@ -16,25 +16,26 @@ export class CartService {
 
     
     addToCart(product: Product) {
-        let newItem = new CartItem(product, 1);
-        let itemExist = false
+       
+        let itemdNotInList = true
+        console.log("After intialization: "+itemdNotInList)
         let index
         if(this.cartItems.length > 0){
             for(let i = 0; i < this.cartItems.length; i++){
-                if(this.cartItems[i].item.id === newItem.item.id){
+                if(this.cartItems[i].item.id === product.id){
                     this.cartItems[i].quantity += 1
-                    itemExist = true
+                    itemdNotInList = false
+                    console.log("inside the for loop" + itemdNotInList)
                     this.items.next(this.cartItems)  
                 }  
             }
         } 
-    //    else if(itemExist || this.cartItems.length<= 0){
-    //         this.cartItems.push(newItem)
-    //         this.items.next(this.cartItems)   
-    //     }    
-    
-        this.cartItems.push(newItem)
-        this.items.next(this.cartItems)     
+       if(itemdNotInList){
+            console.log("inside the if else statement"+ itemdNotInList)
+            let newItem = new CartItem(product, 1);
+            this.cartItems.push(newItem)
+            this.items.next(this.cartItems)   
+        }        
     }
 
     removeItemFromCart(item:CartItem){

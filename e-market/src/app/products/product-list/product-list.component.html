@@ -1,0 +1,50 @@
+<!-- 
+<div class="dropdown" appDropdown>
+  <a href="#" class="dropdown-toggle" role="button">Category <span class="caret"></span></a>
+  <ul class="dropdown-menu">
+    <li><a href="#">Furniture</a></li>
+    <li><a href="#">Electronic</a></li>
+    <li><a href="#">Clothing</a></li>
+    <li><a href="#">Book</a></li>
+  </ul>
+</div> -->
+
+<div class="row">
+  <div class="col">
+    <div ngbDropdown class="d-inline-block">
+      <button class="btn btn-outline-primary" id="category" ngbDropdownToggle>Category</button>
+      <ul ngbDropdownMenu aria-labelledby="category">
+        <li><button ngbDropdownItem name = "furniture" 
+          (click)="buttonClick('Furniture')">Furniture</button></li>
+        <li><button ngbDropdownItem name = "Electronics" 
+          (click)="buttonClick('Electronics')">Electronics</button></li>
+        <li><button ngbDropdownItem name = "Clothing" 
+          (click)="buttonClick('Clothing')">Clothing</button></li>
+        <li><button ngbDropdownItem name = "Books" 
+            (click)="buttonClick('Books')">Books</button></li>
+        <li><button ngbDropdownItem name = "All" 
+          (click)="buttonClick('All')">All</button></li> 
+      </ul>
+    </div>
+  </div>
+
+
+
+<div class="row">
+    <div class="col">
+        <app-product
+        *ngFor="let item of products"
+        [product]= "item"
+        ></app-product>
+       
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

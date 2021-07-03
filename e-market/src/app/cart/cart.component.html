@@ -1,0 +1,61 @@
+
+<div class="row cart">
+  <div class="col-12">
+    <ul class="list-group">
+      <div class="row">
+        <div class="col">
+          <h3>Cart</h3>
+        </div>
+        <div class="col-md-6 col-md-offset-6"><button (click)="clearCart()" class="btn btn-outline-primary"> Clear
+            Cart</button></div>
+      </div>
+
+
+      <div class="product-card rounded">
+        <ul class="list-group list-group">
+          <div class="cart-item " *ngFor="let item of items">
+            <div class="list-group-item container">
+              <div class="row">
+                <div class="col">
+                  <h4>{{ item.item.title }}</h4>
+                  <h5>{{ item.item.price  | currency }}</h5>
+                </div>
+                <div class="col">
+                </div>
+              </div>
+            </div>
+            <li class="list-group-item rounded">
+              <div class="container">
+                <div class="row">
+                
+                  <button class="btn btn-outline-primary" value="" [ngClass]="{'list-group-item' : 'active'}" disabled>
+                    {{ item.quantity }} </button>
+            
+                  <div class="col align-self-end">
+                    <button class="btn btn-outline-primary" id="remove" type="submit" name="" value="Remove From Cart"
+                      [ngClass]="{'list-group-item' : 'active'}" (click)="removeFromCart(item)"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x"
+                        viewBox="0 0 16 16">
+                        <path
+                          d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                      </svg></button>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+
+          </div>
+          <br />
+        </ul>
+      </div>
+
+      <div class="list-group-item container rounded border border-primary">
+        <h3 class="border-bottom">Cart Total</h3>
+
+      <span>$ {{totalCost}}</span>
+      </div>
+    </ul>
+  </div>
+</div>
+

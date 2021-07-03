@@ -1,0 +1,17 @@
+.cart-item{
+    margin: 20px 20px 20px 0px;
+}
+
+.cart {
+    background-color: rgb(207, 219, 230);
+    margin-top: 40px;
+    padding: 12px;
+}
+
+.row {
+    padding: 12px;
+}
+
+#remove{
+    margin-left: 60px;
+}

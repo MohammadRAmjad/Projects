@@ -11,8 +11,8 @@ import { ProductService } from '../product.service';
 export class ProductListComponent implements OnInit {
  
   
-  @Output() productWasSelected = new EventEmitter<Product>()
-  @Input() categorySelected = new EventEmitter<string>()
+  // @Output() productWasSelected = new EventEmitter<Product>()
+  // @Input() categorySelected = new EventEmitter<string>()
   products: Product[] = [];
   value:string="All";
   
@@ -27,9 +27,9 @@ export class ProductListComponent implements OnInit {
     this.products =this.productService.getProducts(e)
   }
 
-  onProductSelect(product: Product){
-    this.productWasSelected.emit(product)
-  }
+  // onProductSelect(product: Product){
+  //   this.productWasSelected.emit(product)
+  // }
   
 
 }

@@ -28,7 +28,7 @@ export class CartComponent  {
 
   removeFromCart(e:CartItem){
     this.cartService.removeItemFromCart(e)
-    this.totalCost -= e.item.price
+   
 
   }
 

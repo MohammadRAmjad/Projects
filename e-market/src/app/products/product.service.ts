@@ -12,9 +12,6 @@ private products: Product[] = [
     new Product(7,'Fuzzy Socks', 8.95, 'Clothing'),
     new Product(8,'Beanie', 19.99, 'Clothing'),
     new Product(9,'Puffer Jacket', 100.00, 'Clothing')
-    // new Product(10,'TV', 755.55, 'Electronics'),
-    // new Product(11,'TV', 755.55, 'Electronics'),
-    // new Product(12,'TV', 755.55, 'Electronics'),
   ];
   getProducts(v:string){
       if(v === 'All')

@@ -12,7 +12,7 @@ import { Injectable } from "@angular/core";
 export class CartService {
     cartItems: CartItem[] = [];
     items = new Subject()
-    temp = []
+    
 
     
     addToCart(product: Product) {
@@ -40,17 +40,24 @@ export class CartService {
 
     removeItemFromCart(item:CartItem){
         let index
+        
         for(let i = 0; i < this.cartItems.length; i++){
-            if (this.cartItems[i].item.title === item.item.title){
+            if (this.cartItems[i].item.id === item.item.id){
+                if(this.cartItems[i].quantity === 1) {
+                    //this.cartItems = this.cartItems.splice(i,1)
+                    this.cartItems = this.cartItems.filter(product => product.item.id !== item.item.id)
+                    this.items.next(this.cartItems)
+                    break
+                }
                if(this.cartItems[i].quantity > 1){
                 this.cartItems[i].quantity -= 1
+                this.items.next(this.cartItems)
+                break
                }
-               else{
-                   this.cartItems.splice(i,1)
-               }
+          
             }
-            break
         } 
+       
     }
     
     calcTotalCost(cis: CartItem[]) {

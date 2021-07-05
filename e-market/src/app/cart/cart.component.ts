@@ -34,7 +34,6 @@ export class CartComponent  {
 
   clearCart() {
    this.cartService.clearCart()
-   this.items = []
    this.totalCost = 0
   }
 

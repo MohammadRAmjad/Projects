@@ -44,7 +44,6 @@ export class CartService {
         for(let i = 0; i < this.cartItems.length; i++){
             if (this.cartItems[i].item.id === item.item.id){
                 if(this.cartItems[i].quantity === 1) {
-                    //this.cartItems = this.cartItems.splice(i,1)
                     this.cartItems = this.cartItems.filter(product => product.item.id !== item.item.id)
                     this.items.next(this.cartItems)
                     break
@@ -76,6 +75,7 @@ export class CartService {
     clearCart() {
         
         this.cartItems = [];
+        this.items.next(this.cartItems)
     }
 
 }
